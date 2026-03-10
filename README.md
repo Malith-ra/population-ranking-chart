@@ -1,41 +1,40 @@
-<<<<<<< HEAD
+![alt text](image.png)
 # population-ranking-chart
 population-ranking-chart data
-=======
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# Population Ranking Chart
 
-First, run the development server:
+This project is a Next.js application that visualizes country population data using a bar chart.  
+The application retrieves population statistics from a public data source and displays the most populated countries for a selected year.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Display population data using a horizontal bar chart
+- Countries ranked from **highest to lowest population**
+- Show **Top 10 countries by default**
+- Option to switch between **Top 10 and Top 15 countries**
+- Navigate between years using **Previous / Next controls**
+- Unique color for each country bar
+- Data fetched dynamically from a public API
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Data Source
 
-To learn more about Next.js, take a look at the following resources:
+Population data is retrieved from the **World Bank Open Data API**.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+API Endpoint: https://api.worldbank.org/v2/country/all/indicator/SP.POP.TOTL
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Technologies Used
 
-## Deploy on Vercel
+- **Next.js**
+- **React**
+- **TypeScript**
+- **React Query**
+- **TailwindCSS**
+- **Recharts**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
->>>>>>> 2262eaffcb3164dfacd6f4e2421542191edfef49
