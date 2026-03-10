@@ -1,4 +1,6 @@
 ![alt text](image.png)
+# population-ranking-chart
+population-ranking-chart data
 
 # Population Ranking Chart
 
@@ -35,3 +37,4 @@ API Endpoint: https://api.worldbank.org/v2/country/all/indicator/SP.POP.TOTL
 - **Recharts**
 
 ---
+
