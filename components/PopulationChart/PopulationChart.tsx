@@ -38,10 +38,10 @@ export default function PopulationChart({
   const years = useMemo(() => getYears(data), [data]);
   const [selectedYear, setSelectedYear] = useState(initialYear);
 
-  const currentYearIndex = years.findIndex((year) => year === selectedYear);
+  const currentYearIndex = years.indexOf(selectedYear);
 
   const chartData = useMemo(() => {
-    return getTopCountriesByYear(data, selectedYear, 10).reverse();
+    return getTopCountriesByYear(data, selectedYear, 10);
   }, [data, selectedYear]);
 
   const handlePrev = () => {
@@ -83,7 +83,7 @@ export default function PopulationChart({
 
       <div className="mb-4 text-sm text-gray-600">Showing top 10 countries</div>
 
-      <div className="h-[640px] w-full">
+      <div className="h-160 w-full">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={chartData}
@@ -93,7 +93,11 @@ export default function PopulationChart({
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis type="number" tickFormatter={formatPopulation} />
             <YAxis type="category" dataKey="country" width={140} />
-            <Tooltip formatter={(value: number) => formatPopulation(value)} />
+            <Tooltip
+              formatter={(value) =>
+                value ? formatPopulation(Number(value)) : ''
+              }
+            />
             <Bar
               dataKey="population"
               radius={[0, 10, 10, 0]}

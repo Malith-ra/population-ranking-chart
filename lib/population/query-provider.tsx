@@ -14,13 +14,14 @@ export function QueryProvider({ children }: Props) {
         defaultOptions: {
           queries: {
             refetchOnWindowFocus: false,
-            staleTime: 1000 * 60 * 60 * 24,
           },
         },
       }),
   );
 
   return (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+      {children}
+    </QueryClientProvider>
   );
 }

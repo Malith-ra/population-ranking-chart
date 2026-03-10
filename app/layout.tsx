@@ -1,14 +1,10 @@
 import type { Metadata } from 'next';
-import QueryProvider from '@/providers/QueryProvider';
 import './globals.css';
-import { Geist } from "next/font/google";
-import { cn } from "@/lib/utils";
-
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+import { QueryProvider } from '@/providers/QueryProvider';
 
 export const metadata: Metadata = {
   title: 'Population Ranking Chart',
-  description: 'Country population chart by year',
+  description: 'Countries population by year',
 };
 
 export default function RootLayout({
@@ -17,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("font-sans", geist.variable)}>
+    <html lang="en">
       <body>
         <QueryProvider>{children}</QueryProvider>
       </body>

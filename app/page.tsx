@@ -1,23 +1,17 @@
-import PopulationChart from '@/components/PopulationChart/PopulationChart';
-import { fetchPopulationData, getYears } from '@/lib/population';
+import { PopulationDashboard } from '@/components/dashboard/population-dashboard';
+import { fetchPopulationData } from '@/lib/population/api';
+import { getInitialYear, getYears } from '@/lib/population/helpers';
 
 export default async function Page() {
   const populationData = await fetchPopulationData();
+
   const years = getYears(populationData);
-  const initialYear = years[years.length - 1];
+
+  const initialYear = getInitialYear(years);
 
   return (
-    <main className="mx-auto min-h-screen max-w-6xl px-6 py-10">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight">
-          Countries Population by Year
-        </h1>
-        <p className="mt-2 text-sm text-gray-600">
-          Top 10 countries by population with year navigation
-        </p>
-      </div>
-
-      <PopulationChart
+    <main className="min-h-screen bg-slate-50 px-6 py-10">
+      <PopulationDashboard
         initialData={populationData}
         initialYear={initialYear}
       />

@@ -1,9 +1,10 @@
 export type PopulationRow = {
   country: string;
+  countryCode: string;
   year: number;
   population: number;
 };
 
-export type ChartRow = PopulationRow & {
+export type PopulationChartRow = PopulationRow & {
   color: string;
 };
