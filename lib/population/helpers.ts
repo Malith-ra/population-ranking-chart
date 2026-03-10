@@ -1,32 +1,22 @@
 import { PopulationChartRow, PopulationRow } from '@/types/population';
 
-const COLORS = [
-  '#2563eb',
-  '#dc2626',
-  '#16a34a',
-  '#9333ea',
-  '#ea580c',
-  '#0891b2',
-  '#ca8a04',
-  '#db2777',
-  '#4f46e5',
-  '#059669',
-  '#e11d48',
-  '#7c3aed',
-  '#0f766e',
-  '#b45309',
-  '#1d4ed8',
+export const COLORS = [
+  '#3B82F6',
+  '#EF4444',
+  '#10B981',
+  '#F59E0B',
+  '#8B5CF6',
+  '#14B8A6',
+  '#EC4899',
+  '#6366F1',
+  '#84CC16',
+  '#F97316',
+  '#06B6D4',
+  '#D946EF',
+  '#22C55E',
+  '#E11D48',
+  '#A855F7',
 ];
-
-export function getCountryColor(country: string) {
-  let hash = 0;
-
-  for (let i = 0; i < country.length; i += 1) {
-    hash = country.charCodeAt(i) + ((hash << 5) - hash);
-  }
-
-  return COLORS[Math.abs(hash) % COLORS.length];
-}
 
 export function getYears(data: PopulationRow[]) {
   return [...new Set(data.map((item) => item.year))].sort((a, b) => a - b);
@@ -46,6 +36,7 @@ export function getChartData(
   selectedYear: number,
   limit: number,
   selectedCountries: string[],
+  order: string,
 ): PopulationChartRow[] {
   const yearData = data.filter((item) => item.year === selectedYear);
 
@@ -54,11 +45,14 @@ export function getChartData(
       ? yearData.filter((item) => selectedCountries.includes(item.country))
       : yearData;
 
-  return filteredData
-    .sort((a, b) => b.population - a.population)
-    .slice(0, limit)
-    .map((item) => ({
-      ...item,
-      color: getCountryColor(item.country),
-    }));
+  const sortedData = [...filteredData].sort((a, b) =>
+    order === 'lowest'
+      ? a.population - b.population
+      : b.population - a.population,
+  );
+
+  return sortedData.slice(0, limit).map((item, index) => ({
+    ...item,
+    color: COLORS[index % COLORS.length],
+  }));
 }

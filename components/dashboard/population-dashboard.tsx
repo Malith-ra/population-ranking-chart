@@ -13,6 +13,7 @@ import { YearNavigation } from './year-navigation';
 import { PopulationBarChart } from './population-bar-chart';
 import { CountryLimitSelect } from './country-limit-select';
 import { CountryMultiSelect } from './country-multi-select';
+import { OrderSelect } from '../population/order-select';
 
 type Props = {
   initialData: PopulationRow[];
@@ -30,6 +31,7 @@ export function PopulationDashboard({ initialData, initialYear }: Props) {
   const [selectedYear, setSelectedYear] = useState(initialYear);
   const [countryLimit, setCountryLimit] = useState(DEFAULT_COUNTRY_LIMIT);
   const [selectedCountries, setSelectedCountries] = useState<string[]>([]);
+  const [order, setOrder] = useState('highest');
 
   const currentYearIndex = years.findIndex((year) => year === selectedYear);
 
@@ -39,8 +41,9 @@ export function PopulationDashboard({ initialData, initialYear }: Props) {
       selectedYear,
       Number(countryLimit),
       selectedCountries,
+      order,
     );
-  }, [data, selectedYear, countryLimit, selectedCountries]);
+  }, [data, selectedYear, countryLimit, selectedCountries, order]);
 
   const handlePrevious = () => {
     if (currentYearIndex > 0) {
@@ -65,8 +68,10 @@ export function PopulationDashboard({ initialData, initialYear }: Props) {
         </p>
       </div>
 
-      <div className="mb-6 grid gap-4 md:grid-cols-2">
+      <div className="mb-6 grid gap-4 md:grid-cols-3">
         <CountryLimitSelect value={countryLimit} onChange={setCountryLimit} />
+
+        <OrderSelect value={order} onChange={setOrder} />
 
         <CountryMultiSelect
           options={FAMOUS_COUNTRIES}

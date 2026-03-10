@@ -21,4 +21,5 @@ export const FAMOUS_COUNTRIES = [
   'South Korea',
   'Saudi Arabia',
   'Mexico',
+  'Sri Lanka',
 ];
