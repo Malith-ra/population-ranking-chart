@@ -51,8 +51,8 @@ export async function fetchPopulationData(): Promise<PopulationRow[]> {
   const [validCountryCodes, populationResponse] = await Promise.all([
     fetchRealCountryCodes(),
     fetch(WORLD_BANK_POPULATION_URL, {
-      // next: { revalidate: 86400 },
-      cache: 'no-store',
+      next: { revalidate: 86400 },
+      // cache: 'no-store',
     }),
   ]);
 
