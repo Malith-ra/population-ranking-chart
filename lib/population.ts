@@ -1,11 +1,7 @@
-import { ChartRow, PopulationRow } from '@/types/population';
+import type { PopulationRow, ChartRow } from '@/types/population';
 
 const WORLD_BANK_URL =
   'https://api.worldbank.org/v2/country/all/indicator/SP.POP.TOTL?format=json&per_page=20000';
-
-const EXCLUDED_REGIONS = new Set([
-  'World',
-]);
 
 type WorldBankItem = {
   country: { value: string };
@@ -13,9 +9,23 @@ type WorldBankItem = {
   value: number | null;
 };
 
+const EXCLUDED_REGIONS = new Set([
+  'World',
+  'High income',
+  'Low income',
+  'Middle income',
+  'European Union',
+  'North America',
+  'South Asia',
+  'Sub-Saharan Africa',
+  'East Asia & Pacific',
+  'Latin America & Caribbean',
+  'Middle East & North Africa',
+]);
+
 export async function fetchPopulationData(): Promise<PopulationRow[]> {
   const res = await fetch(WORLD_BANK_URL, {
-    next: { revalidate: 86400 },
+   cache:'no-cache',
   });
 
   if (!res.ok) {
